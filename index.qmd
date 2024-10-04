@@ -11,4 +11,136 @@ page-layout: full
 title-block-banner: true
 ---
 
+```{r echo= FALSE, warning=FALSE, message=FALSE}
+#Loading all the libraries
+library(tidyverse)
+library(dplyr)
+library(kableExtra)
+library(ggplot2)
 
+#Load the dataset
+tourism <- read_csv("data/tourism-gdp-proportion-of-total-gdp.csv")
+```
+
+# PART A
+
+### Title : Understanding the Economic Impact of Tourism on Australia’s GDP (2008-2022)
+
+
+**Introduction**
+
+Tourism has long been a significant driver of economic growth and employment in Australia. With its stunning natural landscapes and vibrant cities, the country has been a popular destination for international and domestic travelers alike. However, the past decade has seen major disruptions, with the COVID-19 pandemic causing an unprecedented decline in the tourism sector's contribution to the national economy.
+
+In this post, we analyze how tourism's share of Australia’s Gross Domestic Product (GDP) has evolved from 2008 to 2022. We will look at the trends, the pandemic's impact, and the subsequent recovery to understand the resilience and vulnerabilities of the tourism industry.
+
+**Problem Description**
+
+Tourism plays a crucial role in Australia’s economy, contributing significantly to its Gross Domestic Product (GDP), job creation, and regional development. However, the tourism industry is highly sensitive to global changes, such as economic downturns and pandemics. Analyzing the industry’s contribution to GDP helps us understand its strengths and weaknesses, allowing policymakers and stakeholders to strategize effectively.
+
+This blog post examines the trends in tourism’s contribution to Australia’s GDP from 2008 to 2022, focusing on the dramatic decline caused by the COVID-19 pandemic and the subsequent recovery. The analysis sheds light on how global events can influence tourism and what can be done to ensure its long-term stability.
+
+**Method**
+
+**Data Source**
+
+- The data for this analysis was sourced from a website [Our World in Data](https://ourworldindata.org/)  specifically focusing on the proportion of GDP from tourism for various countries between 2008 and 2022.
+
+- The dataset includes fields such as country name, year, and the percentage of GDP that comes from tourism.
+
+**Data Dictionary**
+
+```{r echo= FALSE, warning=FALSE, message=FALSE}
+#Filtering the dataset
+
+filtered_data <- tourism %>% 
+  filter(Entity == 'Australia')
+
+colnames(filtered_data)
+
+```
+
+- **Entity**: The name of the country being analyzed for its tourism-related GDP.
+
+- **Code**: A standardized abbreviation or code representing the country, often used in data systems.
+
+- **Year**: The specific year in which the data point was recorded or reported.
+
+- **GDP from tourism as a share of total GDP**: The percentage of a country's Gross Domestic Product that is generated from tourism activities relative to its total GDP.
+
+
+**Details of the Work**
+
+1. **Data Cleaning and Preparation**: The dataset was filtered to focus specifically on Australia's tourism sector. Any missing or incomplete data was addressed through interpolation or removal to ensure consistency.
+
+2. **Exploratory Data Analysis (EDA)**: Descriptive statistics were calculated to understand the data's distribution and identify trends or anomalies, ensuring that the dataset was suitable for in-depth analysis.
+
+3. **Graphical Representation and Trend Analysis**: A line chart was used to visualize the trends in tourism’s GDP contribution from 2008 to 2022, highlighting steady growth pre-2019, a sharp decline during the pandemic, and a gradual recovery in 2021-2022 as seen in @fig-1
+
+4. **Contextual and Comparative Analysis**: The analysis connected the trends to major global events like the COVID-19 pandemic and compared post-pandemic recovery to pre-pandemic stability to provide strategic insights for policymakers.
+
+**Analysis**
+
+The graph captures several notable trends and turning points during this period, reflecting both global and domestic events that have influenced the tourism sector's economic significance in the country.
+
+**1. Initial Stability (2008–2012)**:
+The share of GDP from tourism exhibited a relatively stable trend between 2008 and 2012, fluctuating slightly between 3.0% and 3.4%. This period reflects a post-Global Financial Crisis (GFC) recovery phase for the global economy, during which Australia’s tourism sector was somewhat resilient. This stability can be attributed to Australia’s strong economic fundamentals at the time and the continuous demand for inbound tourism, particularly from Asian markets like China and Japan. Moreover, domestic tourism remained strong, supporting the sector’s steady contribution to GDP.
+
+**2. Growth Phase (2013–2017)**:
+From 2013 to 2017, the share of tourism in GDP saw a gradual increase, peaking at around 3.7% in 2016-2017. This period of growth coincided with the Australian government’s strategic focus on tourism as a key economic driver, coupled with the depreciation of the Australian dollar, which made the country a more affordable destination for international visitors. Additionally, Australia’s tourism infrastructure development and successful marketing campaigns (e.g., “There’s Nothing Like Australia”) helped attract a growing number of high-spending tourists, particularly from China and India.
+
+**3. Stagnation and Decline (2018–2020)**:
+The period between 2018 and early 2020 was marked by a slight decline in tourism’s contribution to GDP. This was due to a range of factors, including a stronger Australian dollar, which reduced the competitiveness of Australia as a travel destination, and a plateauing in the growth rate of international visitor arrivals. Notably, the catastrophic bushfires in 2019-2020 severely impacted regional tourism, leading to cancellations and a reduction in tourism expenditure.
+
+**4. COVID-19 Pandemic Impact (2020–2022)**:
+The most significant disruption in the timeline is observed during the years 2020 and 2021, where the share of tourism in GDP fell sharply to around 2.7%—a historic low in the past 15 years. This decline is directly attributed to the impact of the COVID-19 pandemic, which led to international border closures, lockdowns, and restrictions on domestic travel. Tourism was one of the hardest-hit sectors, with international visitor numbers dropping by over 99% in some months and domestic tourism plummeting due to state-level restrictions. The sharp downturn in tourism’s share of GDP reflects these unprecedented conditions.
+
+**5. Post-Pandemic Recovery and Uncertainty (2022)**:
+By 2022, there is a slight uptick in the proportion of GDP from tourism, indicating a slow recovery as international borders reopened and domestic travel resumed. However, the recovery is uneven, with some regions and sectors (e.g., business travel) lagging behind others (e.g., leisure tourism). While the slight increase is a positive sign, the overall share remains below pre-pandemic levels, suggesting that the tourism sector still faces challenges in returning to its former economic prominence.
+
+It illustrates a relatively stable period from 2008 to 2018, followed by a sharp decline during the COVID-19 pandemic years (2019-2020) and a gradual recovery starting in 2021.
+
+
+```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+
+ggplot(filtered_data, aes(x = Year, y = `GDP from tourism as a share of total GDP`)) +
+  # Line and points
+  geom_line(color = "dodgerblue", size = 1.2) + 
+  geom_point(color = "red", size = 3) +
+  
+  # Vertical lines for specific years of interest
+  geom_vline(xintercept = c(2010, 2015, 2020), linetype = "dashed", color = "darkgreen") +
+  
+  # Adding labels to the points of interest
+  geom_text(aes(label = ifelse(Year %in% c(2010, 2015, 2020), as.character(Year), "")),
+            vjust = -1, size = 4, color = "darkblue") +
+  
+  # Main title and axis titles
+  labs(
+    title = "Proportion of GDP from Tourism in Australia (2008-2022)",
+    subtitle = "Highlights include economic shifts and impact of the COVID-19 pandemic",
+    caption = "Data Source: Our World in Data",
+    x = "Year",
+    y = "GDP from Tourism as a Share of Total GDP (%)"
+  ) +
+  
+  # Customize the theme
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14),
+    plot.subtitle = element_text(hjust = 0.5, size = 12, face = "italic"),
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold"),
+   
+  )
+```
+
+
+
+
+**Conclusion**
+
+To sum up, the tourist industry in Australia showed remarkable consistency from 2008 to 2018, steadily adding about 3% to the country's Gross Domestic Product. However, a sharp fall in 2019 and 2020 was brought on by the COVID-19 pandemic, underscoring the industry's susceptibility to worldwide shocks. Notwithstanding this blow, the tourism industry appears to be recovering as limits loosen and foreign travel picks back up in 2021 and 2022. This industry is headed toward a full recovery, albeit it hasn't returned to pre-pandemic levels just yet.
+
+**Reference**
+
+- UNWTO (2024) – processed by Our World in Data. “Share of tourism in total GDP” [dataset]. UNWTO, “Tourism direct GDP as a proportion of total GDP” [original data]. Retrieved September 5, 2024 from https://ourworldindata.org/grapher/tourism-gdp-proportion-of-total-gdp
