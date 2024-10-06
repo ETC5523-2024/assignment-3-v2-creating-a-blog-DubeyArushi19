@@ -20,8 +20,6 @@ library(ggplot2)
 tourism <- read_csv("data/tourism-gdp-proportion-of-total-gdp.csv")
 ```
 
-### Title : Understanding the Economic Impact of Tourism on Australia’s GDP (2008-2022)
-
 **Introduction**
 
 Tourism has long been a significant driver of economic growth and
