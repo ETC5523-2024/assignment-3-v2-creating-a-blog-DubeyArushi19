@@ -12,6 +12,7 @@ title-block-banner: true
 ---
 
 ```{r echo= FALSE, warning=FALSE, message=FALSE}
+
 #Loading all the libraries
 library(tidyverse)
 library(dplyr)
@@ -22,7 +23,6 @@ library(ggplot2)
 tourism <- read_csv("data/tourism-gdp-proportion-of-total-gdp.csv")
 ```
 
-# PART A
 
 ### Title : Understanding the Economic Impact of Tourism on Australia’s GDP (2008-2022)
 
@@ -39,7 +39,6 @@ Tourism plays a crucial role in Australia’s economy, contributing significantl
 
 This blog post examines the trends in tourism’s contribution to Australia’s GDP from 2008 to 2022, focusing on the dramatic decline caused by the COVID-19 pandemic and the subsequent recovery. The analysis sheds light on how global events can influence tourism and what can be done to ensure its long-term stability.
 
-**Method**
 
 **Data Source**
 
@@ -70,13 +69,19 @@ colnames(filtered_data)
 
 **Details of the Work**
 
-1. **Data Cleaning and Preparation**: The dataset was filtered to focus specifically on Australia's tourism sector. Any missing or incomplete data was addressed through interpolation or removal to ensure consistency.
+- **Step 1** : **Data Cleaning and Preparation**
+The initial dataset was meticulously filtered to exclusively highlight Australia’s tourism sector. This involved isolating data points specific to Australia while discarding irrelevant entries.
 
-2. **Exploratory Data Analysis (EDA)**: Descriptive statistics were calculated to understand the data's distribution and identify trends or anomalies, ensuring that the dataset was suitable for in-depth analysis.
+- **Step 2** : **Handling Missing Values**
+The dataset was reviewed for missing values to ensure completeness. Instances of missing data were addressed through interpolation for continuity wherever feasible. For critical data points that could not be reliably estimated, those entries were removed to maintain the overall integrity and consistency of the dataset. This careful handling of missing values ensured that the analysis was based on reliable and complete information.
 
-3. **Graphical Representation and Trend Analysis**: A line chart was used to visualize the trends in tourism’s GDP contribution from 2008 to 2022, highlighting steady growth pre-2019, a sharp decline during the pandemic, and a gradual recovery in 2021-2022 as seen in @fig-1
+- **Step 3** : **Exploratory Data Analysis (EDA)** 
+Comprehensive descriptive statistics were calculated to gain insights into the data's distribution, variability, and underlying patterns. This step was crucial for identifying any trends or anomalies within the dataset, thereby confirming its suitability for deeper analytical processes. Visualizations such as histograms and box plots were employed to illustrate the distribution and assess the presence of outliers.
 
-4. **Contextual and Comparative Analysis**: The analysis connected the trends to major global events like the COVID-19 pandemic and compared post-pandemic recovery to pre-pandemic stability to provide strategic insights for policymakers.
+- **Step 4** : **Trend Analysis** A line chart was created to effectively visualize the trends in tourism's contribution to Australia’s GDP from 2008 to 2022. This chart highlighted key phases: steady growth leading up to 2019, a dramatic decline during the pandemic years, and a tentative recovery in 2021-2022. The trends illustrated in the chart serve to encapsulate the impact of global events on the tourism sector, as referenced in @fig-1.
+
+- **Step 5** : **Contextual and Comparative Analysis**
+The analysis delved into the contextual backdrop of the observed trends, linking them to significant global events such as the COVID-19 pandemic. By comparing the post-pandemic recovery trajectory with the pre-pandemic stability, the analysis provides critical insights for policymakers and stakeholders, highlighting the need for strategic interventions to bolster the tourism sector’s resilience and adaptability in the face of future challenges.
 
 **Analysis**
 
@@ -99,6 +104,7 @@ By 2022, there is a slight uptick in the proportion of GDP from tourism, indicat
 
 It illustrates a relatively stable period from 2008 to 2018, followed by a sharp decline during the COVID-19 pandemic years (2019-2020) and a gradual recovery starting in 2021.
 
+1. **Visual Analysis of Tourism's Contribution to GDP**
 
 ```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 
@@ -117,7 +123,6 @@ ggplot(filtered_data, aes(x = Year, y = `GDP from tourism as a share of total GD
   # Main title and axis titles
   labs(
     title = "Proportion of GDP from Tourism in Australia (2008-2022)",
-    subtitle = "Highlights include economic shifts and impact of the COVID-19 pandemic",
     caption = "Data Source: Our World in Data",
     x = "Year",
     y = "GDP from Tourism as a Share of Total GDP (%)"
@@ -133,13 +138,40 @@ ggplot(filtered_data, aes(x = Year, y = `GDP from tourism as a share of total GD
    
   )
 ```
+2. **Tabular Analysis of Key Data Points**
 
+The table below (Table 1) presents a summary of key data points that highlight the trends in tourism’s contribution to GDP:
 
+```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+# Creating the data frame for Table 1
+year <- c(2008, 2015, 2019, 2020, 2022)
+tourism_gdp <- c(2.9, 3.1, 2.4, 1.4, 2.5)
+key_events <- c("Global Financial Crisis impact", 
+                "Tourism growth due to increased international arrivals", 
+                "Decline before the pandemic", 
+                "Impact of COVID-19 pandemic", 
+                "Initial recovery phase")
 
+# Creating the table
+table1 <- data.frame(Year = year, 
+                     `Tourism GDP as % of Total GDP` = tourism_gdp, 
+                     `Key Events` = key_events)
+
+# Displaying the table using kable
+kable(table1, 
+      col.names = c("Year", "Tourism GDP as % of Total GDP", "Key Events"),
+      caption = "Table 1: Key Events Impacting Tourism's Contribution to GDP in Australia (2008-2022)",
+      format = "markdown") 
+
+```
 
 **Conclusion**
 
-To sum up, the tourist industry in Australia showed remarkable consistency from 2008 to 2018, steadily adding about 3% to the country's Gross Domestic Product. However, a sharp fall in 2019 and 2020 was brought on by the COVID-19 pandemic, underscoring the industry's susceptibility to worldwide shocks. Notwithstanding this blow, the tourism industry appears to be recovering as limits loosen and foreign travel picks back up in 2021 and 2022. This industry is headed toward a full recovery, albeit it hasn't returned to pre-pandemic levels just yet.
+Tourism’s contribution to Australia’s GDP has seen considerable fluctuations over the period from 2008 to 2022. While the sector experienced growth from 2015 to 2018, the sharp decline in 2020 due to the COVID-19 pandemic had a profound impact on its economic contribution. The slight recovery in 2022 suggests that with strategic support, the tourism sector can regain its position as a significant economic driver.
+
+As cited in a study by Ritchie and Crouch (2003), the resilience and competitive positioning of a destination play a crucial role in its ability to recover from adverse situations, emphasizing the need for sustainable tourism policies.
+
+Future strategies should focus on diversifying tourism offerings, enhancing marketing efforts, and building infrastructure to support a resilient tourism industry capable of withstanding global disruptions.
 
 **Reference**
 
