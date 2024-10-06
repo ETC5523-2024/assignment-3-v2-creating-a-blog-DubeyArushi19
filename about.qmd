@@ -16,11 +16,11 @@ about:
 
 ---
 
-**Arushi Dubey**
+## Arushi Dubey
 
 I am currently a student at Monash University with a strong academic focus on business analytics and project management. I am passionate about leveraging my analytical skills and strategic thinking to address real-world business challenges. My vision extends beyond academic achievements, as I aim to contribute meaningfully to the fields of consulting and data-driven decision-making. 
 
-**Skills**
+## Skills
 
 - R Studio
 - SQL
