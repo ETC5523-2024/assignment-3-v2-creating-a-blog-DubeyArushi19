@@ -222,11 +222,11 @@ ggplot(filtered_data, aes(x = Year, y = `GDP from tourism as a share of total GD
 
 2.  **Tabular Analysis of Key Data Points**
 
-The table below @table-1 presents a summary of key data points that
+The table below @tbl-1 presents a summary of key data points that
 highlight the trends in tourism’s contribution to GDP:
 
 ```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
-#| label: table-1
+#| label: tbl-1
 
 # Creating the data frame for Table 1
 year <- c(2008, 2015, 2019, 2020, 2022)
