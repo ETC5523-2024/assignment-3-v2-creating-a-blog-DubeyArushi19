@@ -1,5 +1,5 @@
 ---
-title: "My Analytical Journey"
+title: " Understanding the Economic Impact of Tourism on Australia’s GDP (2008-2022)"
 author: "Arushi Dubey"
 date: "2024-10-06"
 categories: [news]
