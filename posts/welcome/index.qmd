@@ -189,6 +189,7 @@ gradual recovery starting in 2021.
 1.  **Visual Analysis of Tourism's Contribution to GDP**
 
 ```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+#| label: fig-1
 
 ggplot(filtered_data, aes(x = Year, y = `GDP from tourism as a share of total GDP`)) +
   # Line and points
@@ -223,10 +224,12 @@ ggplot(filtered_data, aes(x = Year, y = `GDP from tourism as a share of total GD
 
 2.  **Tabular Analysis of Key Data Points**
 
-The table below (Table 1) presents a summary of key data points that
+The table below @table-1 presents a summary of key data points that
 highlight the trends in tourism’s contribution to GDP:
 
 ```{r echo=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
+#| label: table-1
+
 # Creating the data frame for Table 1
 year <- c(2008, 2015, 2019, 2020, 2022)
 tourism_gdp <- c(2.9, 3.1, 2.4, 1.4, 2.5)
@@ -258,11 +261,6 @@ the COVID-19 pandemic had a profound impact on its economic
 contribution. The slight recovery in 2022 suggests that with strategic
 support, the tourism sector can regain its position as a significant
 economic driver.
-
-As cited in a study by Ritchie and Crouch (2003), the resilience and
-competitive positioning of a destination play a crucial role in its
-ability to recover from adverse situations, emphasizing the need for
-sustainable tourism policies.
 
 Future strategies should focus on diversifying tourism offerings,
 enhancing marketing efforts, and building infrastructure to support a
